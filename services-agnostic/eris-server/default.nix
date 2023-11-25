@@ -24,6 +24,11 @@ in createManagedProcess {
     # TODO: --mountpoint
 
   overrides = {
+    synit = {
+      depends-on = lib.lists.optional
+        ((listenCoap != null) || (listenHttp != null))
+        "<service-state <milestone network> up>";
+    };
     sysvinit = {
       runlevels = [ 3 4 5 ];
     };

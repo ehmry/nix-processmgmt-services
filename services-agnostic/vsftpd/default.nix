@@ -24,6 +24,9 @@ createManagedProcess {
   };
 
   overrides = {
+    synit = {
+      depends-on = [ "<service-state <milestone network> up>" ];
+    };
     sysvinit = {
       runlevels = [ 3 4 5 ];
     };
