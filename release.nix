@@ -1,7 +1,7 @@
 { nixpkgs ? <nixpkgs>
 , system ? builtins.currentSystem
 , nix-processmgmt ? { outPath = ../nix-processmgmt; rev = 1234; }
-, processManagers ? [ "supervisord" "sysvinit" "systemd" "disnix" "s6-rc" ]
+, processManagers ? [ "supervisord" "sysvinit" "systemd" "disnix" "s6-rc" "synit" ]
 , profiles ? [ "privileged" "unprivileged" ]
 }:
 

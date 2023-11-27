@@ -1,6 +1,6 @@
 { nixpkgs ? <nixpkgs>
 , system ? builtins.currentSystem
-, processManagers ? [ "supervisord" "sysvinit" "systemd" "docker" "disnix" "s6-rc" ]
+, processManagers ? [ "supervisord" "sysvinit" "systemd" "docker" "disnix" "s6-rc" "synit" ]
 , profiles ? [ "privileged" "unprivileged" ]
 , nix-processmgmt ? ../../nix-processmgmt
 }:
