@@ -217,4 +217,9 @@ in
     inherit createManagedProcess;
     inherit (pkgs) lib eris-go;
   };
+
+  nncp = import ./nncp {
+    inherit createManagedProcess;
+    inherit (pkgs) lib nncp;
+  };
 }
