@@ -25,6 +25,16 @@ in
     inherit (pkgs) apacheHttpd;
   };
 
+  eris-server = import ./eris-server {
+    inherit createManagedProcess;
+    inherit (pkgs) lib eris-go;
+  };
+
+  nncp = import ./nncp {
+    inherit createManagedProcess;
+    inherit (pkgs) lib nncp;
+  };
+
   simpleWebappApache = import ./apache/simple-webapp-apache.nix {
     inherit createManagedProcess logDir cacheDir runtimeDir forceDisableUserChange;
     inherit (pkgs) lib runCommand apacheHttpd php writeTextFile;
@@ -213,13 +223,8 @@ in
     inherit (pkgs) util-linux;
   };
 
-  eris-server = import ./eris-server {
-    inherit createManagedProcess;
-    inherit (pkgs) lib eris-go;
-  };
-
-  nncp = import ./nncp {
-    inherit createManagedProcess;
-    inherit (pkgs) lib nncp;
+  zerotierone = import ./zerotierone {
+    inherit createManagedProcess libDir;
+    inherit (pkgs) lib zerotierone;
   };
 }
