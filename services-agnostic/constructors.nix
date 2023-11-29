@@ -223,6 +223,11 @@ in
     inherit (pkgs) util-linux;
   };
 
+  yggdrasil = import ./yggdrasil {
+    inherit createManagedProcess runtimeDir;
+    inherit (pkgs) lib yggdrasil;
+  };
+
   zerotierone = import ./zerotierone {
     inherit createManagedProcess libDir;
     inherit (pkgs) lib zerotierone;
