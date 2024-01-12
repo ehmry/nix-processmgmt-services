@@ -35,6 +35,11 @@ in
     inherit (pkgs) lib nncp;
   };
 
+  pacproxy = import ./pacproxy {
+    inherit createManagedProcess;
+    inherit (pkgs) lib pacproxy;
+  };
+
   simpleWebappApache = import ./apache/simple-webapp-apache.nix {
     inherit createManagedProcess logDir cacheDir runtimeDir forceDisableUserChange;
     inherit (pkgs) lib runCommand apacheHttpd php writeTextFile;
