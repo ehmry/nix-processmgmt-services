@@ -1,6 +1,8 @@
 { lib, createManagedProcess, eris-go }:
+let eris-go' = eris-go; in
 
 { instanceSuffix ? "", instanceName ? "eris-server${instanceSuffix}"
+, eris-go ? eris-go'
   # Whether to decode ERIS content at http://…/uri-res/N2R?urn:eris:….
 , decode ? false,
 # Server CoAP listen address.
@@ -17,8 +19,11 @@ in createManagedProcess {
   foregroundProcessArgs = [ "server" ] ++ lib.optional decode "--decode"
     ++ lib.optionals (listenCoap != null) [ "--coap" listenCoap ]
     ++ lib.optionals (listenHttp != null) [ "--http" listenHttp ]
-    ++ lib.optionals (mountpoint != null) [ "--mountpoint" mountpoint ]
-    ++ storeBackends;
+    ++ lib.optionals (mountpoint != null) [ "--mountpoint" mountpoint ];
+
+  environment = {
+    ERIS_STORE_URL = storeBackends;
+  };
 
   path = [ "/run/wrappers" ]; # fusermount3
 
